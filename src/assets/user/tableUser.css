@@ -25,3 +25,13 @@
   display: flex;
   flex-direction: column;
 }
+
+
+@media only screen and (max-width: 480px) {
+  .tableUser__wrapp {
+    flex-direction: column;
+  }
+  .tableUser__wrapp fieldset * {
+    white-space: normal;
+  }
+}

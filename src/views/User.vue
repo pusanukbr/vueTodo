@@ -145,7 +145,7 @@ export default {
       localStorage.setItem("favorites", JSON.stringify(retArray));
     },
     updateTodo(newTodo) {
-      this.lists.push(newTodo);
+      this.lists.unshift(newTodo);
     },
   },
 };

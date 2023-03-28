@@ -1,30 +1,33 @@
 <template>
   <form @submit.prevent="submit" class="formLogin">
-    <div class="formLogin__block">
-      <Input
-        ref="name"
-        v-model.trim="name"
-        name="name"
-        :errors="errors"
-        type="text"
-        placeholder="User Name"
-      />
-    </div>
-    <div class="formLogin__block">
-      <Input
-        ref="phone"
-        v-model.trim="phone"
-        name="phone"
-        type="phone"
-        :errors="errors"
-        placeholder="Phone Number"
-      />
-    </div>
-    <div v-if="errors.length && errors[0].type === 'submit'">
-      {{ errors[0].text }}
-    </div>
-    <div class="formLogin__block">
-      <Button type="submit">Submit</Button>
+    <div class="formLogin__header">description</div>
+    <div class="formLogin__body">
+      <div class="formLogin__block">
+        <Input
+          ref="name"
+          v-model.trim="name"
+          name="name"
+          :errors="errors"
+          type="text"
+          placeholder="User Name"
+        />
+      </div>
+      <div class="formLogin__block">
+        <Input
+          ref="phone"
+          v-model.trim="phone"
+          name="phone"
+          type="phone"
+          :errors="errors"
+          placeholder="Phone Number"
+        />
+      </div>
+      <div v-if="errors.length && !errors[0].type" class="error">
+        {{ errors[0].text }}
+      </div>
+      <div class="formLogin__block">
+        <Button type="submit">Submit</Button>
+      </div>
     </div>
   </form>
 </template>
@@ -52,18 +55,19 @@ export default {
       const regexPhone = /[0-9+#-()]/;
       const regexName = /[a-zA-Z]/;
 
-      if (!this.name || !this.phone) return;
+      if (!this.name || !this.phone)
+        return this.setError({ text: "Заповніть всі поля" });
 
       if (!regexPhone.test(this.phone) || !regexName.test(this.name)) {
         if (!regexName.test(this.name))
-          this.setError({ text: "Incorect name", type: "name" });
+          this.setError({ text: "Некоректне ім'я", type: "name" });
         if (!regexPhone.test(this.phone))
-          this.setError({ text: "Incorect phone", type: "phone" });
+          this.setError({ text: "Некоректний телефон", type: "phone" });
         return;
       }
 
-      console.log("test");
       const users = await api.getUsers();
+      // .split(" ") is needed to delete unnesessary code(x000) at the end
       const user = users.find(
         (user) =>
           user.username.trim() === this.name &&
@@ -74,11 +78,12 @@ export default {
         store.setUsersAll(users.length + 1);
         return this.$router.push({ name: "User" });
       }
-      this.setError({ text: "Not found user", type: "submit" });
+
+      this.setError({ text: "Not found user" });
     },
     setError({ text, type }) {
       this.errors.push({ text, type });
-      if (type === "submit") {
+      if (!type) {
         this.name = "";
         this.phone = "";
         return this.$refs.name.$refs.input.focus();
@@ -89,7 +94,10 @@ export default {
   },
   watch: {
     name() {
-      if (this.name.length > 0) this.errors = [];
+      if (this.errors?.length && this.name.length > 0) this.errors = [];
+    },
+    phone() {
+      if (this.errors?.length && this.phone.length > 0) this.errors = [];
     },
   },
 };

@@ -28,6 +28,7 @@
   --color-border-dark: rgba(60, 60, 60, 0.66);
   --color-white:  #f8f8f8;
   --color-dark:  #2c3e50;
+  --color-grey: rgba(235, 235, 235, 0.64);
 }
 
 *,

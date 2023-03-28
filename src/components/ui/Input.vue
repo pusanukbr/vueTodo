@@ -8,7 +8,7 @@
       :placeholder="placeholder"
       @input="handlerInput"
     />
-    <div v-if="checkErrors" class="input__error">
+    <div v-if="checkErrors" class="error">
       {{ errors[0].text }}
     </div>
   </div>
