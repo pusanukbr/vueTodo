@@ -1,6 +1,7 @@
 {
   "name": "vuetodo",
   "version": "0.0.0",
+  "homepage": "https://pusanukbr.github.io/vueTodo/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
