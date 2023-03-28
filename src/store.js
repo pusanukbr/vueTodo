@@ -2,7 +2,6 @@
 import { reactive } from 'vue';
 const test = {
   "id": 1,
-  "allUsers": 10,
   "name": "Leanne Graham",
   "username": "Bret",
   "email": "Sincere@april.biz",
@@ -25,8 +24,12 @@ const test = {
   }
 };
 export const store = reactive({
-  user: null,
+  user: test,
   setUser(user) {
     this.user = user
+  },
+  usersAll: 5,
+  setUsersAll(number) {
+    this.usersAll = number
   }
 })

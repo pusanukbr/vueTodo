@@ -1,11 +1,12 @@
 <template>
-  <div>
-    <form @submit.prevent="submit" class="login__form">
+  <form @submit.prevent="submit" class="addTodo">
+    <div class="addTodo__wrapp">
       <Input v-model="title" type="text" placeholder="Title todo" />
       <Input v-model="userId" type="text" placeholder="Enter user ID" />
-      <Button type="submit">Add Todo</Button>
-    </form>
-  </div>
+    </div>
+
+    <Button type="submit" class="addTodo__button">Add Todo</Button>
+  </form>
 </template>
 
 <script>
@@ -23,7 +24,6 @@ export default {
   },
   methods: {
     async submit() {
-      console.log("test");
       const responce = await api.addTodo({
         title: this.title,
         userId: Number(this.userId),

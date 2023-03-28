@@ -1,0 +1,38 @@
+.list__todos {
+  padding: 10px;
+  border: 1px dashed var(--color-accent);
+}
+
+.list__todo {
+  position: relative;
+  padding: 10px 30px 10px 10px;
+  margin: 10px auto;
+
+  background-color: var(--background-color);
+
+  color: var(--color-white);
+  list-style: none;
+}
+
+.list__todo:first-child {
+  margin-top: 0;
+}
+.list__todo:last-child {
+  margin-bottom: 0;
+}
+
+.list__todo.checked {
+  text-decoration: line-through;
+}
+.icon-check{
+  margin-right: 10px;
+  color: var(--color-accent);
+}
+
+.list__favorites {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}

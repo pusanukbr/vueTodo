@@ -1,0 +1,13 @@
+.formLogin {
+  max-width: 400px;
+  width: 100%;
+  padding: 15px;
+  border: 1px dashed var(--color-accent)
+}
+
+.formLogin__block {
+  margin-bottom: 15px;
+}
+.formLogin__block:last-child{
+  margin-bottom: 0;
+}

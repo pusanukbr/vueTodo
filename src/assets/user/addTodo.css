@@ -1,0 +1,13 @@
+.addTodo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  padding: 10px;
+}
+
+.addTodo__wrapp {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}

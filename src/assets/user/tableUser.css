@@ -1,0 +1,27 @@
+.tableUser {
+  display: flex;
+  width: 100%;
+}
+
+.tableUser__wrapp {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: auto;
+  padding: 10px;
+  margin: 0 auto 10px;
+
+  border: 1px dashed var(--color-accent);
+}
+
+.tableUser__wrapp fieldset {
+  flex: 1;
+}
+.tableUser__wrapp fieldset * {
+  white-space: nowrap;
+}
+.tableUser__geo {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="button">
     <button :type="type" @click="click"><slot /></button>
   </div>
 </template>
@@ -15,8 +15,8 @@ export default {
   },
   methods: {
     click() {
-      this.$emit('click');
+      this.$emit("click");
     },
   },
-}
+};
 </script>

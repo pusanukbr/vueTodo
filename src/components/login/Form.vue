@@ -1,25 +1,31 @@
 <template>
-  <form @submit.prevent="submit">
-    <Input
-      ref="name"
-      v-model.trim="name"
-      name="name"
-      :errors="errors"
-      type="text"
-      placeholder="User Name"
-    />
-    <Input
-      ref="phone"
-      v-model.trim="phone"
-      name="phone"
-      type="phone"
-      :errors="errors"
-      placeholder="Phone Number"
-    />
+  <form @submit.prevent="submit" class="formLogin">
+    <div class="formLogin__block">
+      <Input
+        ref="name"
+        v-model.trim="name"
+        name="name"
+        :errors="errors"
+        type="text"
+        placeholder="User Name"
+      />
+    </div>
+    <div class="formLogin__block">
+      <Input
+        ref="phone"
+        v-model.trim="phone"
+        name="phone"
+        type="phone"
+        :errors="errors"
+        placeholder="Phone Number"
+      />
+    </div>
     <div v-if="errors.length && errors[0].type === 'submit'">
       {{ errors[0].text }}
     </div>
-    <Button type="submit">Submit</Button>
+    <div class="formLogin__block">
+      <Button type="submit">Submit</Button>
+    </div>
   </form>
 </template>
 
@@ -60,11 +66,12 @@ export default {
       const users = await api.getUsers();
       const user = users.find(
         (user) =>
-          user.username.trim() === this.name && user.phone.trim() === this.phone
+          user.username.trim() === this.name &&
+          user.phone.split(" ")[0] === this.phone
       );
       if (user) {
-        user.allUsers = users.length + 1;
         store.setUser(user);
+        store.setUsersAll(users.length + 1);
         return this.$router.push({ name: "User" });
       }
       this.setError({ text: "Not found user", type: "submit" });

@@ -1,13 +1,14 @@
 <template>
-  <div>
+  <div class="input">
     <input
       :type="type"
       ref="input"
       :value="value"
+      class="custom__input"
       :placeholder="placeholder"
       @input="handlerInput"
     />
-    <div v-if="checkErrors">
+    <div v-if="checkErrors" class="input__error">
       {{ errors[0].text }}
     </div>
   </div>

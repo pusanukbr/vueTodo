@@ -1,99 +1,62 @@
 <template>
-  <div class="about">
-    <div v-if="user" class="block__user">
-      <div>{{ user.id }}</div>
-      <div>{{ user.username }}</div>
-      <div>{{ user.phone }}</div>
-    </div>
-    <AddTodo @update:todo="updateTodo" />
-    <div v-if="lists" class="block__list">
-      <div class="block__filter">
-        <select name="filter" class="select" @change="changeStatusFilter">
-          <option value="" class="select--option">All</option>
-          <option value="completed" class="select--option">Completed</option>
-          <option value="uncompleted" class="select--option">
-            Uncompleted
-          </option>
-          <option value="favorites" class="select--option">Favorites</option>
-        </select>
-        <select name="filter" class="select" @change="changeIdFilter">
-          <option value="">All</option>
-          <option
-            :value="id"
-            v-for="id in user.allUsers"
-            :key="id"
-            class="select--option"
-          >
-            {{ id }}
-          </option>
-        </select>
-        <div>
-          <Input
-            type="text"
-            v-model="titleFilter"
-            placeholder="Введіть дані для фільтрації"
-          />
-        </div>
+  <div class="user">
+    <TableUser />
+    <div class="user__wrapp">
+      <div class="user__add">
+        <AddTodo @update:todo="updateTodo" />
       </div>
-      <ul v-for="list in filteredItems" :key="list.id" class="list__todos">
-        <li class="list__todo" :class="{ checked: list.completed }">
-          <font-awesome-icon
-            v-if="list.completed"
-            :icon="['fas', 'toggle-on']"
-          />
-          <font-awesome-icon v-else :icon="['fas', 'toggle-off']" />
-          <span>Title: {{ list.title }}</span>
-          <font-awesome-icon
-            :key="favoritesKey"
-            :icon="['fas', 'star']"
-            :color="list.favorites ? 'red' : null"
-            class="list__favorites--icon"
-            @click="checkFavorites(list.id)"
-          />
-        </li>
-      </ul>
+
+      <div v-if="lists" class="user__todos">
+        <div class="user__filter">
+          <div class="user_select">
+            <Select v-model="statusFilter" label="Фільтр по статусу">
+              <option value="">All</option>
+              <option value="completed">Completed</option>
+              <option value="uncompleted">Uncompleted</option>
+              <option value="favorites">Favorites</option>
+            </Select>
+
+            <Select v-model="idFilter" label="Фільтр по ID юзера">
+              <option value="">All</option>
+              <option :value="id" v-for="id in usersAll" :key="id">
+                {{ id }}
+              </option>
+            </Select>
+          </div>
+
+          <div class="user_inputSearch">
+            <Input
+              type="text"
+              v-model="titleFilter"
+              placeholder="Введіть дані для фільтрації"
+            />
+          </div>
+        </div>
+        <Todos
+          :lists="filteredList"
+          :favoritesKey="favoritesKey"
+          @favorites="checkFavorites"
+        />
+      </div>
     </div>
   </div>
 </template>
 
-<style>
-.list__todo {
-  border-bottom: 1px dashed paleturquoise;
-  margin: 10px auto;
-  list-style: none;
-}
-
-.list__todo.checked {
-  text-decoration: line-through;
-}
-
-.list__todo span {
-  margin-right: 10px;
-}
-.list__favorites--icon {
-  cursor: pointer;
-}
-
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
-
 <script>
 import api from "@/api";
 import { store } from "@/store";
-import AddTodo from "../components/user/AddTodo.vue";
-import Input from "../components/ui/Input.vue";
+import AddTodo from "@/components/user/AddTodo.vue";
+import Input from "@/components/ui/Input.vue";
+import Select from "@/components/ui/Select.vue";
+import TableUser from "@/components/user/TableUser.vue";
+import Todos from "../components/user/Todos.vue";
+
 export default {
   name: "User",
-  components: { AddTodo, Input },
+  components: { AddTodo, Input, TableUser, Select, Todos },
   data() {
     return {
-      user: store.user || null,
+      usersAll: store.usersAll || null,
       lists: null,
       listsLocal: null,
       statusFilter: "",
@@ -104,13 +67,13 @@ export default {
   },
   async mounted() {
     this.lists = await api.getTodoList();
+
     const retString = localStorage.getItem("favorites");
     const retArray = JSON.parse(retString) || [];
-    if (retArray) {
-      this.lists.map((list) => {
-        if (retArray.includes(list.id)) list.favorites = true;
-      });
-    }
+
+    this.lists.map((list) => {
+      if (retArray.includes(list.id)) list.favorites = true;
+    });
   },
   computed: {
     filterCompleted() {
@@ -147,13 +110,10 @@ export default {
         this.filterTitle,
       ].filter(Boolean);
     },
-    filteredItems() {
+    filteredList() {
       return this.filters.length
         ? this.lists.filter((item) => this.filters.every((f) => f(item)))
         : this.lists;
-    },
-    favorites() {
-      return this.favoritesArr.includes(this.lists.id);
     },
   },
   methods: {
@@ -166,6 +126,7 @@ export default {
     async checkFavorites(id) {
       const retString = localStorage.getItem("favorites");
       let retArray = JSON.parse(retString) || [];
+
       this.lists.map((list) => {
         if (list.id === id) {
           if (list.favorites) {
@@ -173,11 +134,14 @@ export default {
             retArray = retArray.filter((item) => Number(item) !== Number(id));
           } else if (!list.favorites) {
             list.favorites = true;
-            if (!retArray.includes(id)) retArray.push(id);
+            retArray.push(id);
           }
         }
       });
+
+      // for updating deep data
       this.favoritesKey += 1;
+
       localStorage.setItem("favorites", JSON.stringify(retArray));
     },
     updateTodo(newTodo) {

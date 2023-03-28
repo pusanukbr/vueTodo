@@ -1,0 +1,15 @@
+.input {
+  width: 100%;
+}
+
+.input input {
+  width: 100%;
+  padding: 10px;
+
+  border: 1px solid var(--color-border-dark);
+  outline: none;
+}
+
+.input input:focus {
+  border: 1px solid var(--color-accent);
+}
