@@ -1,0 +1,1 @@
+import{n as t}from"./index.f1ab1be6.js";const _={};var o=function(){var e=this,n=e._self._c;return n("div",{staticClass:"notFound"},[n("h1",[e._v("404")]),n("h3",[e._v("Page not found!")]),n("router-link",{attrs:{to:"/"}},[e._v("Back to home page")])],1)},a=[],s=t(_,o,a,!1,null,"cf109ddd",null,null);const d=s.exports;export{d as default};
