@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="submit">
+    <form @submit.prevent="submit" class="login__form">
       <Input v-model="title" type="text" placeholder="Title todo" />
       <Input v-model="userId" type="text" placeholder="Enter user ID" />
       <Button type="submit">Add Todo</Button>
