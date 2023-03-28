@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 Vue.use(VueRouter)
 
@@ -10,18 +9,23 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: 'Login',
+      component: () => import('../views/Login.vue')
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      path: '/user',
+      name: 'User',
+      component: () => import('../views/User.vue')
+    },
+    {
+      path: '*',
+      name: 'NotPage',
+      component: () => import('../views/NotPage.vue')
     }
   ]
 })
-
+// router.beforeEach((to, from, next) => {
+//   if(!Object.keys(to.params).length && to.name !== "Login") next({name: 'Login'});
+//   else next();
+// })
 export default router
