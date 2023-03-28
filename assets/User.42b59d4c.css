@@ -1,0 +1,1 @@
+.list__todo{border-bottom:1px dashed paleturquoise;margin:10px auto;list-style:none}.list__todo.checked{text-decoration:line-through}.list__todo span{margin-right:10px}.list__favorites--icon{cursor:pointer}@media (min-width: 1024px){.about{min-height:100vh;display:flex;align-items:center}}

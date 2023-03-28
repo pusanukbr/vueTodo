@@ -1,0 +1,1 @@
+System.register(["./index-legacy.52c0b903.js"],(function(t,e){"use strict";var n;return{setters:[function(t){n=t.n}],execute:function(){t("default",n({},(function(){var t=this,e=t._self._c;return e("div",[e("h1",[t._v("404")]),e("h3",[t._v("Page not found!")]),e("router-link",{attrs:{to:"/"}},[t._v("Back to home page")])],1)}),[],!1,null,null,null,null).exports)}}}));
