@@ -1,34 +1,20 @@
-/* color palette from <https://github.com/vuejs/theme> */
-:root {
-  --vt-c-white: #ffffff;
-  --vt-c-white-soft: #f8f8f8;
-  --vt-c-white-mute: #f2f2f2;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-  --vt-c-black: #181818;
-  --vt-c-black-soft: #222222;
-  --vt-c-black-mute: #282828;
-
-  --vt-c-indigo: #2c3e50;
-
-  --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
-  --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
-  --vt-c-divider-dadarkrk-1: rgba(84, 84, 84, 0.65);
-  --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
-
-  --vt-c-text-light-1: var(--vt-c-indigo);
-  --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
-  --vt-c-text-dark-1: var(--vt-c-white);
-  --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
-}
-
-/* semantic color variables for this project */
 :root {
   --background-color: #2c3e50;
   --color-accent: #00bd7e;
   --color-border-dark: rgba(60, 60, 60, 0.66);
-  --color-white:  #f8f8f8;
-  --color-dark:  #2c3e50;
+  --color-white:  #ffffff;
   --color-grey: rgba(235, 235, 235, 0.64);
+
+  --layout-color-dark-grey-modal: #A5A5A5;
+  --layout-color-light-grey-modal: #C3C3C3;
+  --layout-color-green: #519945;
+  --layout-color-modal: #5F5F5F;
+  --layout-color-input: #353535;
+
+  --layout-color-grey: #545454;
+  --layout-color-dark: #474747;
 }
 
 *,

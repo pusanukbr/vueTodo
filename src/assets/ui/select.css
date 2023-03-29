@@ -3,6 +3,7 @@
 }
 
 .select__label {
+  color: var(--color-white);
   font-weight: 700;
 }
 

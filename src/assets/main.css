@@ -7,20 +7,20 @@
 
 /* Login */
 @import "./login/form.css";
+@import "./login/header.css";
+@import "./login/footer.css";
+@import "./login/login.css";
 
 /* User */
 @import "./user/todos.css";
 @import "./user/addTodo.css";
 @import "./user/tableUser.css";
-@import "./user/index.css";
+@import "./user/user.css";
 
 
 #app {
-  max-width: 1280px;
+  width: 100%;
   height: 100vh;
-  margin: 0 auto;
-  padding: 2rem;
-
   font-weight: normal;
 }
 a,
@@ -36,20 +36,6 @@ a,
   }
 }
 
-.login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
 .error {
   color: red;
-}
-
-@media only screen and (max-width: 1280px) {
-  #app {
-    max-width: 768px;
-  }
 }

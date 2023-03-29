@@ -1,6 +1,7 @@
 .tableUser {
   display: flex;
   width: 100%;
+  margin: 0 auto 10px;
 }
 
 .tableUser__wrapp {
@@ -10,17 +11,20 @@
   flex-wrap: wrap;
   width: auto;
   padding: 10px;
-  margin: 0 auto 10px;
+  margin: 0 auto;
 
   border: 1px dashed var(--color-accent);
+  border-radius: 5px;
 }
 
 .tableUser__wrapp fieldset {
   flex: 1;
 }
+
 .tableUser__wrapp fieldset * {
   white-space: nowrap;
 }
+
 .tableUser__geo {
   display: flex;
   flex-direction: column;
@@ -30,7 +34,9 @@
 @media only screen and (max-width: 480px) {
   .tableUser__wrapp {
     flex-direction: column;
+    width: 100%;
   }
+  
   .tableUser__wrapp fieldset * {
     white-space: normal;
   }

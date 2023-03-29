@@ -6,10 +6,22 @@
   width: 100%;
   padding: 10px;
 
-  border: 1px solid var(--color-border-dark);
+  border: none;
+  border-radius: 5px;
   outline: none;
+
+  color: var(--layout-color-input);
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 21px;
+  letter-spacing: -0.025em;
+}
+::placeholder {
+  color: var(--layout-color-input);
 }
 
 .input input:focus {
-  border: 1px solid var(--color-accent);
+  outline: 1px solid var(--layout-color-dark);
 }

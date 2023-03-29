@@ -1,6 +1,8 @@
 .list__todos {
   padding: 10px;
+
   border: 1px dashed var(--color-accent);
+  border-radius: 5px;
 }
 
 .list__todo {
@@ -17,6 +19,7 @@
 .list__todo:first-child {
   margin-top: 0;
 }
+
 .list__todo:last-child {
   margin-bottom: 0;
 }
@@ -24,15 +27,18 @@
 .list__todo.checked {
   text-decoration: line-through;
 }
+
 .icon-check{
   margin-right: 10px;
+
   color: var(--color-accent);
 }
 
 .list__favorites {
   position: absolute;
   top: 50%;
-  right: 5px;
+  right: 10px;
+
   transform: translateY(-50%);
   cursor: pointer;
 }

@@ -2,32 +2,34 @@
   <form @submit.prevent="submit" class="formLogin">
     <div class="formLogin__header">description</div>
     <div class="formLogin__body">
+      <div class="formLogin__description">description</div>
       <div class="formLogin__block">
-        <Input
-          ref="name"
-          v-model.trim="name"
-          name="name"
-          :errors="errors"
-          type="text"
-          placeholder="User Name"
-        />
+        <div class="formLogin__field">
+          <Input
+            ref="name"
+            v-model.trim="name"
+            name="name"
+            :errors="errors"
+            type="text"
+            placeholder="User Name"
+          />
+        </div>
+        <div class="formLogin__field">
+          <Input
+            ref="phone"
+            v-model.trim="phone"
+            name="phone"
+            type="phone"
+            :errors="errors"
+            placeholder="Phone Number"
+          />
+        </div>
       </div>
-      <div class="formLogin__block">
-        <Input
-          ref="phone"
-          v-model.trim="phone"
-          name="phone"
-          type="phone"
-          :errors="errors"
-          placeholder="Phone Number"
-        />
-      </div>
+
       <div v-if="errors.length && !errors[0].type" class="error">
         {{ errors[0].text }}
       </div>
-      <div class="formLogin__block">
-        <Button type="submit">Submit</Button>
-      </div>
+      <Button type="submit">Submit</Button>
     </div>
   </form>
 </template>

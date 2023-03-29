@@ -5,8 +5,9 @@ import { store } from '../store'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
+  
   mode: 'history',
-  base: import.meta.env.BASE_URL,
+  base: process.env.NODE_ENV === 'production' ? '/vueTodo/' : '',
   routes: [
     {
       path: '/',

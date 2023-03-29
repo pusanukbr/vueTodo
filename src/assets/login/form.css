@@ -1,26 +1,56 @@
 .formLogin {
-  max-width: 400px;
+  max-width: 447px;
   width: 100%;
 
-  border: 1px dashed var(--color-accent)
+  background-color: var(--layout-color-light-grey-modal);
+  border-radius: 5px;
+
+  overflow: hidden;
 }
+
 .formLogin__header {
   width: 100%;
-  padding: 20px;
+  height: 51px;
+  padding: 15px 0;
 
-  background-color: var(--color-grey);
-  border-bottom: 1px dashed var(--color-accent);
+  background-color: var(--layout-color-dark-grey-modal);
 
+  color: var(--layout-color-modal);
   text-align: center;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 21px;
+  letter-spacing: -0.025em;
 }
 
 .formLogin__body {
-  padding: 15px;
+  padding: 15px 25px 30px;
+}
+
+.formLogin__description {
+  margin-bottom: 14px;
+
+  color: var(--layout-color-modal);
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 21px;
+  letter-spacing: -0.025em;
 }
 
 .formLogin__block {
-  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
-.formLogin__block:last-child{
-  margin-bottom: 0;
+
+.formLogin__field {
+  margin-bottom: 20px;
+}
+
+.formLogin__field:last-child {
+  margin-bottom: 25px;
 }
